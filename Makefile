@@ -4,6 +4,6 @@ clean:
 	rm -fv -- main
 compile: main
 #install:
-#	install -Dm755 main /usr/bin/aaaaaaaa
+#	install -Dm755 main /usr/bin/program
 #uninstall:
-#	rm -fv -- /usr/bin/aaaaaaaa
+#	rm -fv -- /usr/bin/program
