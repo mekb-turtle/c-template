@@ -1,9 +1,20 @@
-.PHONY: all
-all: clean compile
+CC=cc
+CFLAGS=-Wall -O2
+LFLAGS=-lm
+
+OBJS=main.o
+
+TARGET=main
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^ $(LFLAGS)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
 clean:
-	rm -fv -- main
-compile: main
-#install:
-#	install -Dm755 main /usr/bin/program
-#uninstall:
-#	rm -fv -- /usr/bin/program
+	rm -fv -- $(OBJS) $(TARGET)
