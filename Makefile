@@ -62,7 +62,7 @@ $(MAN_OUT_DIR):
 	mkdir -p -- $(MAN_OUT_DIR)
 
 clean:
-	rm -f -- $(BIN_DIR)/$(TARGET) $(OBJ_FILES) $(MAN_OUT_PAGES)
+	rm -f -- $(BIN_DIR)/$(TARGET) $(OBJ_FILES) $(MAN_OUT_PAGES) || true
 	rmdir -- $(BIN_DIR) $(OBJ_DIR) $(BUILD_DIR) $(ORIG_BUILD_DIR) $(MAN_OUT_DIR) || true
 
 man: $(MAN_OUT_FILES)
