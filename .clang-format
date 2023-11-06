@@ -67,3 +67,6 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 TabWidth: 4
 UseTab: ForIndentation
+SortUsingDeclarations: Never
+SortIncludes: Never
+
