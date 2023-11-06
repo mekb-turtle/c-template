@@ -29,7 +29,7 @@ else
 	CPPFLAGS += -DDEBUG
 endif
 
-SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES := $(wildcard $(SRC_DIR)/*.c) $(EXTRA_SRC_FILES)
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 MAN_SRC_DIR=man

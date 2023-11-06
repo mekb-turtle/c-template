@@ -1,4 +1,5 @@
 TARGET = example
 VERSION = 1.0.0
 
+EXTRA_SRC_FILES =
 CFLAGS += -Wall
