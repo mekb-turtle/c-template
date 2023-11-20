@@ -4,21 +4,13 @@
 #include <getopt.h>
 #include <stdbool.h>
 
-// silence error highlighting
-#ifndef TARGET
-#define TARGET "example"
-#endif
-#ifndef VERSION
-#define VERSION "unknown"
-#endif
-
 static struct option options_getopt[] = {
-        {"help",    no_argument, NULL, 'h'},
-        {"version", no_argument, NULL, 'V'},
-        {"a",       no_argument, NULL, 'a'},
-        {"b",       no_argument, NULL, 'b'},
-        {"c",       no_argument, NULL, 'c'},
-        {NULL,      0,           NULL, 0  }
+        {"help",    no_argument, 0, 'h'},
+        {"version", no_argument, 0, 'V'},
+        {"a",       no_argument, 0, 'a'},
+        {"b",       no_argument, 0, 'b'},
+        {"c",       no_argument, 0, 'c'},
+        {0,         0,           0, 0  }
 };
 
 int main(int argc, char *argv[]) {
