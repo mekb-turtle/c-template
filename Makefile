@@ -7,8 +7,10 @@ BUILD_DIR := $(ORIG_BUILD_DIR)
 
 BIN_DIR = $(BUILD_DIR)/bin
 OBJ_DIR = $(BUILD_DIR)/obj
+OBJ_BINARY_DIR = $(BUILD_DIR)/objbin
 
 SRC_DIR = src
+SRC_BINARY_DIR = binary
 
 CPPFLAGS += -DTARGET='"$(TARGET)"'
 
@@ -30,7 +32,9 @@ else
 endif
 
 SRC_FILES := $(wildcard $(SRC_DIR)/*.c) $(EXTRA_SRC_FILES)
+BINARY_FILES := $(wildcard $(SRC_BINARY_DIR)/*) $(EXTRA_BINARY_FILES)
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+OBJ_BINARY_FILES := $(patsubst $(SRC_BINARY_DIR)/%, $(OBJ_BINARY_DIR)/%.o, $(BINARY_FILES))
 
 MAN_SRC_DIR=man
 MAN_OUT_DIR=$(ORIG_BUILD_DIR)/man
@@ -48,9 +52,11 @@ endif
 
 all: $(BIN_DIR)/$(TARGET)
 
-$(BIN_DIR)/$(TARGET): $(OBJ_FILES) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET): $(OBJ_BINARY_FILES) $(OBJ_FILES) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
+$(OBJ_BINARY_DIR)/%.o: $(SRC_BINARY_DIR)/% | $(OBJ_BINARY_DIR)
+	xxd -i $< | $(CC) $(CFLAGS) $(CPPFLAGS) -x c -c - -o $@
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
@@ -58,6 +64,8 @@ $(BIN_DIR):
 	mkdir -p -- $(BIN_DIR)
 $(OBJ_DIR):
 	mkdir -p -- $(OBJ_DIR)
+$(OBJ_BINARY_DIR):
+	mkdir -p -- $(OBJ_BINARY_DIR)
 $(MAN_OUT_DIR):
 	mkdir -p -- $(MAN_OUT_DIR)
 
