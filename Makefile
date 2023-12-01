@@ -70,8 +70,8 @@ $(MAN_OUT_DIR):
 	mkdir -p -- $(MAN_OUT_DIR)
 
 clean:
-	rm -f -- $(BIN_DIR)/$(TARGET) $(OBJ_FILES) $(MAN_OUT_FILES) || true
-	rmdir -- $(BIN_DIR) $(OBJ_DIR) $(BUILD_DIR) $(ORIG_BUILD_DIR) $(MAN_OUT_DIR) || true
+	rm -f -- $(BIN_DIR)/$(TARGET) $(OBJ_FILES) $(MAN_OUT_FILES) $(OBJ_BINARY_FILES) || true
+	rmdir -- $(OBJ_BINARY_DIR) $(BIN_DIR) $(OBJ_DIR) $(BUILD_DIR) $(ORIG_BUILD_DIR) $(MAN_OUT_DIR) || true
 
 man: $(MAN_OUT_FILES)
 
