@@ -3,6 +3,7 @@
 #include <err.h>
 #include <getopt.h>
 #include <stdbool.h>
+#define eprintf(...) fprintf(stderr, __VA_ARGS__)
 
 static struct option options_getopt[] = {
         {"help",    no_argument, 0, 'h'},
@@ -52,8 +53,11 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	if (optind != argc || invalid) // use `argc - 1` if you want to require one non-flag argument, such as a file name
-		errx(1, "Invalid usage, try --help");
+	if (optind != argc || invalid) {
+		// use `argc - 1` if you want to require one non-flag argument, such as a file name
+		eprintf("Invalid usage, try --help\n");
+		return 1;
+	}
 
 	printf("Hello World\n");
 	return 0;
