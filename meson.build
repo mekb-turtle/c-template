@@ -17,5 +17,7 @@ add_project_arguments(
   f'-DPROJECT_URL="@url@"',
   language : 'c')
 
-exe = executable('c-template', sources: src, install: true)
+exe = executable('c-template', sources: src, install: true, dependencies: [
+
+])
 
