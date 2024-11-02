@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <err.h>
 #include <getopt.h>
 #include <stdbool.h>
 #define eprintf(...) fprintf(stderr, __VA_ARGS__)
