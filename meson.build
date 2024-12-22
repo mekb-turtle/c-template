@@ -19,7 +19,7 @@ add_project_arguments(
 
 # add custom binary/text files to be compiled into the binary
 #xxd = find_program('xxd')
-#src += custom_target(input: 'src' / 'example.bin', command: [xxd, '-i', '@INPUT@', '@OUTPUT@'], output: '@PLAINNAME@.c', install: false, build_by_default: true)
+#src += custom_target(input: 'src' / 'example.bin', command: [xxd, '-i', '-n', '@PLAINNAME@', '@INPUT@', '@OUTPUT@'], output: '@PLAINNAME@.c', install: false, build_by_default: true)
 
 exe = executable('c-template', sources: src, install: true, dependencies: [
 
