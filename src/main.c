@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <stdint.h>
 #include <stdbool.h>
 #define eprintf(...) fprintf(stderr, __VA_ARGS__)
+
+extern unsigned char example_bin[];
+extern unsigned int example_bin_len;
 
 // simple program with argument handling
 
@@ -61,6 +65,10 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	printf("Hello World\n");
+	printf("Reading from binary file:\n");
+	printf("Size: %u\n", example_bin_len);
+	fwrite(example_bin, 1, example_bin_len, stdout);
+	printf("\n");
+	
 	return 0;
 }
