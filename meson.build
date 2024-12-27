@@ -11,7 +11,10 @@ src = files()
 src_test = files() # included for tests only
 
 # define test files, these get compiled separately
-tests = files('test'/'test1.c')
+tests = [
+  { 'files': files('test'/'test1.c') },
+  { 'files': files('test'/'test2.c'), 'should_fail': true },
+]
 
 # add custom binary/text files to be compiled into the binary
 bin = files('src'/'example.bin')
@@ -47,9 +50,22 @@ fs = import('fs')
 
 # loop tests
 foreach test_ : tests
-  test_name = fs.stem(test_) # basename without extension
-  test_exe = executable(test_name, sources: src + src_test + test_, dependencies: dependencies)
-  test(test_name, test_exe)
+  test_name = fs.stem(test_['files']) # basename without extension
+  if test_.has_key('name')
+    test_name = test_['name'] # custom test name
+  endif
+
+  test_exe = executable(test_name, sources: src + src_test + test_['files'], dependencies: dependencies)
+
+  args = {}
+  foreach key, val : test_
+    # skip files and name
+    if key != 'files' and key != 'name'
+      args += {key: val}
+    endif
+  endforeach
+
+  test(test_name, test_exe, kwargs: args)
 endforeach
 
 # main executable
