@@ -55,7 +55,7 @@ foreach test_ : tests
     test_name = test_['name'] # custom test name
   endif
 
-  test_exe = executable(test_name, sources: src + src_test + test_['files'], dependencies: dependencies)
+  test_exe = executable(test_name, sources: src + src_test + test_['files'], install: false, dependencies: dependencies)
 
   args = {}
   foreach key, val : test_
