@@ -26,6 +26,8 @@ version = meson.project_version()
 
 dependencies = [
 ]
+dependencies_test = [
+]
 
 
 
@@ -55,12 +57,17 @@ foreach test_ : tests
     test_name = test_['name'] # custom test name
   endif
 
-  test_exe = executable(test_name, sources: src + src_test + test_['files'], install: false, dependencies: dependencies)
+  extra_src = []
+  if test_.has_key('src')
+    extra_src = test_['src']
+  endif
+
+  test_exe = executable(test_name, sources: src + src_test + test_['files'] + extra_src, install: false, dependencies: dependencies_test)
 
   args = {}
   foreach key, val : test_
     # skip files and name
-    if key != 'files' and key != 'name'
+    if key != 'files' and key != 'name' and key != 'src'
       args += {key: val}
     endif
   endforeach
