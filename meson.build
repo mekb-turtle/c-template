@@ -30,7 +30,8 @@ version = meson.project_version()
 dependencies = []
 dependencies_test = []
 
-
+# used if you want to install a library
+libdir = get_option('prefix') / get_option('libdir')
 
 # begin meson configuration
 
@@ -91,4 +92,5 @@ exe = executable(
     sources: src + src_main,
     install: true,
     dependencies: dependencies,
+    install_rpath: libdir,
 )
