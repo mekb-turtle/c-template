@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 	int opt;
 
 	// argument handling
-	while ((opt = getopt_long(argc, argv, ":hVabc", (struct option[]){
+	while ((opt = getopt_long(argc, argv, ":hVabc", (struct option[]) {
 	                                                        {"help",    no_argument, 0, 'h'},
 	                                                        {"version", no_argument, 0, 'V'},
 	                                                        {"a",       no_argument, 0, 'a'},
