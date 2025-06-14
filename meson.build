@@ -1,15 +1,7 @@
-project(
-    'c-template',
-    'c',
-    version: '0.1',
-    license: 'MPL-2.0',
-    default_options: ['warning_level=3'],
-)
-
-main_name = 'c-template'
+project('c-template', 'c', version: '0.1', license: 'MPL-2.0')
 
 # define source files
-src_main = files('src' / 'main.c')  # excluded for tests
+src_main = files('main.c')  # excluded for tests
 src = files()
 src_test = files()  # included for tests only
 
@@ -20,7 +12,7 @@ tests = [
 ]
 
 # add custom binary/text files to be compiled into the binary
-bin = files('src' / 'example.bin')
+bin = files('example.bin')
 
 # define project metadata
 url = 'https://github.com/mekb-turtle/c-template'
@@ -88,7 +80,7 @@ endforeach
 
 # main executable
 exe = executable(
-    main_name,
+    name,
     sources: src + src_main,
     install: true,
     dependencies: dependencies,
