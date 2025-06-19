@@ -27,11 +27,11 @@ int main(int argc, char *argv[]) {
 		switch (opt) {
 			case 'h':
 				printf("Usage: %s [OPTION]...\n", PROJECT_NAME);
-				printf("-h --help: Shows help text\n");
-				printf("-V --version: Shows the version\n");
-				printf("-a --a: Do something\n");
-				printf("-b --b: Do something else\n");
-				printf("-c --c: Do another thing\n");
+				printf("-h --help: Shows help text\n"
+				       "-V --version: Shows the version\n"
+				       "-a --a: Do something\n"
+				       "-b --b: Do something else\n"
+				       "-c --c: Do another thing\n");
 				return 0;
 			case 'V':
 				printf("%s %s\n", PROJECT_NAME, PROJECT_VERSION);

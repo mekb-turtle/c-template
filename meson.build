@@ -1,7 +1,7 @@
 project('c-template', 'c', version: '0.1', license: 'MPL-2.0')
 
 # define source files
-src_main = files('main.c')  # excluded for tests
+src_main = files('src'/'main.c')  # excluded for tests
 src = files()
 src_test = files()  # included for tests only
 
